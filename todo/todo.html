@@ -1,0 +1,30 @@
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Todo</title>
+     <link rel="stylesheet" href="todo.css">
+</head>
+
+<body>
+     <div class="container">
+          <h1>My Todo</h1>
+          <div class="form-task">
+               <label for="new-task"></label>
+               <input type="text" name="new-task" id="new-task"
+               autofocus
+               placeholder="Add task"
+               >
+               <button class="add-task">+</button >
+          </div>
+          <ul class="ul-task">
+          </ul>
+          <button onclick="clearTodo()">RESET TODO</button>
+          <button onclick="clearChecked()">CLEAR TASK CHECKED</button>
+     </div>
+     <script src="./todo.js"></script>
+</body>
+
+</html>

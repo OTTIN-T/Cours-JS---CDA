@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Classe</title>
+     <link rel="stylesheet" href="classe.css">
+</head>
+
+<body>
+     <h1>Classe</h1>
+
+     <div>
+          <label for="gender-select">Genre:</label>
+          <select name="gender" id="gender-select" onchange="filterGender('student.gender', event.target.value)">
+               <option value="">----</option>
+               <option value="M">Masculin</option>
+               <option value="F">Féminin</option>
+          </select>
+     </div>
+
+     <div>
+          <label for="sport-select">Sport:</label>
+          <select name="sport" id="sport-select" onchange="filterSport('student.sport', event.target.value)">
+               <option value="">----</option>
+               <option value="football">Football</option>
+               <option value="basketball">Basketball</option>
+               <option value="natation">Natation</option>
+               <option value="handball">Handball</option>
+          </select>
+     </div>
+
+     <div>
+          <label for="class-select">Classe:</label>
+          <select name="class" id="class-select" onchange="filterClass('student.class', event.target.value)">
+               <option value="">----</option>
+               <option value="seconde">Seconde</option>
+               <option value="première">Première</option>
+               <option value="terminale">Terminale</option>
+          </select>
+     </div>
+
+     <div>
+          <label for="age-select">Age:</label>
+          <select name="age" id="age-select" onchange="filterAge('student.age', event.target.value)">
+               <option value="">----</option>
+               <option value="15">15</option>
+               <option value="16">16</option>
+               <option value="17">17</option>
+               <option value="18">18</option>
+          </select>
+     </div>
+
+     <div id="cible"></div>
+     <script src="./classe.js"></script>
+</body>
+
+</html>
