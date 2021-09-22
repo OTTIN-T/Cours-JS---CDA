@@ -3,7 +3,7 @@
 //   supprimer éléve (splice)
 //   bonus form ajout éléve
 
-const students = [
+let students = [
   {
     id: 1,
     firstName: "John",
@@ -71,7 +71,7 @@ const students = [
 
 const cibleHTML = document.getElementById("cible");
 let filteredStudent = students;
-let filterMemory = [null, null, null, null];
+let filterMemory = { gender: false, age: false, sport: false, class: false };
 
 const showStudent = (tableStudent) => {
   cibleHTML.innerHTML = "";
@@ -90,36 +90,53 @@ const showStudent = (tableStudent) => {
 showStudent(filteredStudent);
 
 const filter = (param, value) => {
-  filteredStudent = filteredStudent.filter((student) => eval(param) === value);
+  filteredStudent = students.filter((student) => eval(param) === value);
 };
 
 const deleteStudent = (id) => {
   const findStudent = (student) => student.id === id;
-  filteredStudent.findIndex(findStudent);
-  filteredStudent.splice(filteredStudent.findIndex(findStudent), 1);
+  const findIndex = filteredStudent.findIndex(findStudent)
+  filteredStudent.splice(findIndex, 1);
   showStudent(filteredStudent);
 };
 
 const filterGender = (param, value) => {
-  if (
-    filterMemory[1] != null ||
-    filterMemory[2] != null ||
-    filterMemory[3] != null
-  ) {
-    filteredStudent = filteredStudent.filter(
+  // for (const filtre in filteredStudent) {
+  //   console.log("filtre", filtre)
+  //   // if (Object.hasOwnProperty.call(filterMemory, filtre)) {
+  //   //   const element = filterMemory[filtre];
+  //   //   console.log("element", element)
+      
+  //   // }
+  // }
+  filterMemory.gender = value;
+
+ for (const filtre in filterMemory) {
+  console.log('fsdsdfsdfsdf',`${filtre}: ${filterMemory[filtre]}`);
+
+   if (Object.hasOwnProperty.call(filterMemory, filtre)) {
+    //  console.log("filtre !!!!", filtre)
+    //  console.log("filterMemory !!! iciiiiiiiiiii", filterMemory.gender)
+     const element = filterMemory[filtre];
+     
+   }
+ }
+
+  if (filterMemory.gender != null && filterMemory.sport != null) {
+    console.log("filterMemory !!!!", {...filterMemory})
+    filteredStudent = students.filter(
       (student) =>
-        eval(param) === value &&
-        student.age === filterMemory[1] &&
-        student.sport === filterMemory[2] &&
-        student.class === filterMemory[3]
+        eval(param) == value &&
+        // student.age == filterMemory.age &&
+        student.sport == filterMemory.sport
+        // student.class == filterMemory.class
     );
-  } else if (value === "F") {
+  } else if (value == "F") {
     filter(param, value);
-  } else if (value === "M") {
+  } else if (value == "M") {
     filter(param, value);
   }
   showStudent(filteredStudent);
-  filterMemory[0] = value;
   console.log("filterMemory", filterMemory);
 };
 
@@ -129,11 +146,11 @@ const filterAge = (param, value) => {
     filterMemory[2] != null ||
     filterMemory[3] != null
   ) {
-    filteredStudent = filteredStudent.filter(
+    filteredStudent = students = filteredStudent.filter(
       (student) =>
-        eval(param) === value &&
-        student.gender === filterMemory[0] &&
-        student.sport === filterMemory[2] &&
+        eval(param) === value ||
+        student.gender === filterMemory[0] ||
+        student.sport === filterMemory[2] ||
         student.class === filterMemory[3]
     );
   } else if (value === "15") {
@@ -155,11 +172,11 @@ const filterSport = (param, value) => {
     filterMemory[1] != null ||
     filterMemory[3] != null
   ) {
-    filteredStudent = filteredStudent.filter(
+    filteredStudent = students.filter(
       (student) =>
-        eval(param) === value &&
-        student.gender === filterMemory[0] &&
-        student.age === filterMemory[1] &&
+        eval(param) === value ||
+        student.gender === filterMemory[0] ||
+        student.age === filterMemory[1] ||
         student.class === filterMemory[3]
     );
   } else if (value === "football") {
@@ -182,11 +199,11 @@ const filterClass = (param, value) => {
     filterMemory[1] != null ||
     filterMemory[2] != null
   ) {
-    filteredStudent = filteredStudent.filter(
+    filteredStudent = students.filter(
       (student) =>
-        eval(param) === value &&
-        student.gender === filterMemory[0] &&
-        student.age === filterMemory[1] &&
+        eval(param) === value ||
+        student.gender === filterMemory[0] ||
+        student.age === filterMemory[1] ||
         student.sport === filterMemory[2]
     );
   } else if (value === "seconde") {
