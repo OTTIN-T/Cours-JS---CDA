@@ -1,7 +1,16 @@
 const cibleHTML = document.getElementById("cible");
-const msgFormHTML = document.getElementById("msg-form");
+const infoFormHTML = document.getElementById("info-form");
 const showFormHTML = document.getElementById("show-form");
 const showImgHTML = document.getElementById("img-moto");
+const sliderImgHTML = document.getElementById("slider");
+
+const clearInnerHTML = () => {
+  showImgHTML.innerHTML = "";
+  showFormHTML.innerHTML = "";
+  cibleHTML.innerHTML = "";
+  infoFormHTML.innerHTML = "";
+  sliderImgHTML.innerHTML = "";
+};
 
 const url =
   "https://cd2a-dc76e-default-rtdb.europe-west1.firebasedatabase.app/motos";
@@ -13,14 +22,14 @@ const showmotos = () => {
       //     Object.entries(motos).map((motos) => {
       //       console.log("motos", motos);
       //     });
-      cibleHTML.innerHTML = "";
-      msgFormHTML.innerHTML = "";
-      showImgHTML.innerHTML = "";
+      clearInnerHTML();
+      cibleHTML.innerHTML = "Pas de motos à afficher !";
       showFormHTML.innerHTML = `<button onclick="showForm()">+</button>`;
       if (motos != null) {
+        cibleHTML.innerHTML = "";
         Object.entries(motos).map(([key, value]) => {
           cibleHTML.innerHTML += `<p>${value.model.name}</p>
-                                   <button onclick="motoDetail('${key}')">Detail</button><br><br>
+                                   <button onclick="motoDetail('${key}', '0')">Detail</button><br><br>
                                    <hr>`;
         });
       }
@@ -30,9 +39,7 @@ const showmotos = () => {
 showmotos();
 
 const showForm = () => {
-  showImgHTML.innerHTML = "";
-  showFormHTML.innerHTML = "";
-  cibleHTML.innerHTML = "";
+  clearInnerHTML();
   cibleHTML.innerHTML = `<button onclick="showmotos()">Retour</button><br>
                          <form action="" onsubmit="submitForm(event)" id="form">
                               <div>Modèle:
@@ -54,41 +61,79 @@ const showForm = () => {
                          </form>`;
 };
 
+const removeInputImgForm = (event) => {
+  let eventButton = event.target;
+  let eventInput = eventButton.previousSibling;
+
+  eventButton.remove();
+  eventInput.remove();
+};
+
 const addPicture = (event) => {
   event.preventDefault();
+
   const addPicturesListHTML = document.getElementById("add-pictures-list");
   const child = document.createElement("input");
+
   child.setAttribute("name", "images");
   child.setAttribute("type", "text");
   child.setAttribute("class", "images");
   child.setAttribute("placeholder", "url");
+
+
+  const childButton = document.createElement("button");
+  childButton.setAttribute("onclick", "removeInputImgForm(event)")
+  childButton.innerHTML = "X"
+
   addPicturesListHTML.appendChild(child);
+  addPicturesListHTML.insertBefore(childButton, child.nextSibling)
 };
 
 const submitForm = (evt) => {
   evt.preventDefault();
 
   const imagesHTML = document.getElementsByClassName("images");
+  const manufacturerData = document.getElementById("manufacturer").value;
+  const nameData = document.getElementById("name").value;
+  const yearData = document.getElementById("year").value;
+  const cylinderData = document.getElementById("cylinder").value;
   const imagesTable = [];
+
+  if (
+    (manufacturerData === "",
+    nameData === "",
+    yearData === "",
+    cylinderData === "")
+  ) {
+    return (infoFormHTML.innerHTML = "Certains champs sont vide !");
+  }
+
   Object.entries(imagesHTML).map(([key, value]) => {
+    if (value.value === "") {
+      return (infoFormHTML.innerHTML = "Champ vide !");
+    }
     imagesTable.push({ url: value.value });
   });
 
+  if (imagesTable.length === 0) {
+    return (infoFormHTML.innerHTML = "Merci de mettre une photo !");
+  }
+
   const data = {
     model: {
-      manufacturer: document.getElementById("manufacturer").value,
-      name: document.getElementById("name").value,
+      manufacturer: manufacturerData,
+      name: nameData,
     },
-    year: document.getElementById("year").value,
-    cylinder: document.getElementById("cylinder").value,
+    year: yearData,
+    cylinder: cylinderData,
     images: imagesTable,
   };
   fetch(`${url}.json`, {
     method: "POST",
     body: JSON.stringify(data),
   })
-    .then(() => (msgFormHTML.innerHTML = `Bien ajoutée !`))
-    .catch(() => (msgFormHTML.innerHTML = "Erreur !"));
+    .then(() => showmotos())
+    .catch(() => (infoFormHTML.innerHTML = "Erreur !"));
 };
 
 const motoDelete = (id) => {
@@ -99,15 +144,23 @@ const motoDelete = (id) => {
     .catch((error) => console.log("error", error));
 };
 
+const removeImg = (event) => {
+  let eventButton = event.target;
+  let eventInput = eventButton.previousSibling.previousSibling;
+
+  eventButton.remove();
+  eventInput.remove();
+};
+
 const motoUpdate = (id) => {
   fetch(`${url}/${id}.json`)
     .then((data) => data.json())
     .then((moto) => {
-      showFormHTML.innerHTML = "";
-      showImgHTML.innerHTML = "";
-      cibleHTML.innerHTML = "";
+      clearInnerHTML();
       moto.images.map((image) => {
-        showImgHTML.innerHTML += `<input name="images" type="text" id="images" class="images" placeholder="url" value="${image.url}"><hr>`;
+        showImgHTML.innerHTML += `<input name="images" type="text" id="images" class="images" placeholder="url" value="${image.url}">
+                                    <button onclick="removeImg(event)">X</button>
+                                  `;
       });
       cibleHTML.innerHTML = ` <div>
                                    <button onclick="showmotos()">Retour</button><br>
@@ -142,102 +195,87 @@ const motoUpdate = (id) => {
 
 const submitUpdate = (evt, id) => {
   evt.preventDefault();
+
   const imagesHTML = document.getElementsByClassName("images");
+  const manufacturerData = document.getElementById("manufacturer").value;
+  const nameData = document.getElementById("name").value;
+  const yearData = document.getElementById("year").value;
+  const cylinderData = document.getElementById("cylinder").value;
   const imagesTable = [];
+
+  if (
+    (manufacturerData === "",
+    nameData === "",
+    yearData === "",
+    cylinderData === "")
+  ) {
+    return (infoFormHTML.innerHTML = "Certains champs sont vide !");
+  }
+
   Object.entries(imagesHTML).map(([key, value]) => {
-    console.log("value", value.value);
-    if (value.value != "") {
-      imagesTable.push({ url: value.value });
+    if (value.value === "") {
+      return (infoFormHTML.innerHTML = "Champ vide !");
     }
+    imagesTable.push({ url: value.value });
   });
+
+  if (imagesTable.length === 0) {
+    return (infoFormHTML.innerHTML = "Merci de mettre au moins une photo !");
+  }
+
   const data = {
     model: {
-      manufacturer: document.getElementById("manufacturer").value,
-      name: document.getElementById("name").value,
+      manufacturer: manufacturerData,
+      name: nameData,
     },
-    year: document.getElementById("year").value,
-    cylinder: document.getElementById("cylinder").value,
+    year: yearData,
+    cylinder: cylinderData,
     images: imagesTable,
   };
+
   fetch(`${url}/${id}.json`, {
     method: "PUT",
     body: JSON.stringify(data),
   })
-    .then(() => motoDetail(id))
+    .then(() => motoDetail(id, 0))
     .catch((error) => console.log("error", error));
 };
 
-let indexMotoImg = 0;
-
-const prevImg = (id, index) => {
-  console.log("index prev", index);
-  //   console.log("index", index);
-  //   console.log("url", url);
-  //   console.log("url", JSON.stringify(url));
-  //   showImgHTML.innerHTML = "";
-  //   showImgHTML.innerHTML = `<img src='${url}'>`;
-  //   msgFormHTML.innerHTML = `<div>
-  //                                    <button onclick="prevImg('${
-  //                                      moto.images[index - 1].url
-  //                                    }', '${index}')">Prev</button>
-  //                                    <button onclick="nextImg('${
-  //                                      moto.images[index + 1].url
-  //                                    }', '${index}')">Next</button>
-  //                               </div>`;
+const sliderImg = (id, index) => {
   fetch(`${url}/${id}/images/${index}.json`)
     .then((data) => data.json())
     .then((url) => {
-      console.log("url", url.url);
-      showImgHTML.innerHTML = "";
+      if (url === null) {
+        return motoDetail(id, 0);
+      }
       showImgHTML.innerHTML = `<img src='${url.url}'>`;
-      indexMotoImg = index - 1;
-    })
-    .catch((error) => console.log("error", error));
-};
-const nextImg = (id, index) => {
-  //   console.log("index", index);
-  //   console.log("url", url);
-  //   showImgHTML.innerHTML = "";
-  //   showImgHTML.innerHTML = `<img src='${url}'>`;
-  fetch(`${url}/${id}/images/${index}.json`)
-    .then((data) => data.json())
-    .then((url) => {
-      console.log("url", url);
-      showImgHTML.innerHTML = "";
-      showImgHTML.innerHTML = `<img src='${url.url}'>`;
-      indexMotoImg = index + 1;
+      motoDetail(id, Number(index));
     })
     .catch((error) => console.log("error", error));
 };
 
-const motoDetail = (id) => {
+const motoDetail = (id, indexTest) => {
+  let index = Number(indexTest);
   fetch(`${url}/${id}.json`)
     .then((data) => data.json())
     .then((moto) => {
-      cibleHTML.innerHTML = "";
-      showFormHTML.innerHTML = "";
-      showImgHTML.innerHTML = "";
-      //  moto.images.map((image, index) => {
-      //    console.log("image", image);
-      // const stringUrl = JSON.stringify(moto.images[index])
-      // console.log("stringUrl", stringUrl)
-      //  const test2 = Object.entries(moto.images);
-      indexMotoImg = moto.images.length;
-      console.log("indexMotoImg", indexMotoImg);
-      console.log("moto.images[indexMotoImg - 1].url", moto.images[indexMotoImg - 1].url);
-
-      msgFormHTML.innerHTML = `<div>
-                                   <button onclick="prevImg('${id}','${
-        indexMotoImg - 1
-      }')">Prev</button>
-                                   <button onclick="nextImg('${id}','${
-        indexMotoImg + 1
-      }')">Next</button>
+      clearInnerHTML();
+      sliderImgHTML.innerHTML = `<div>
+                                  <button onclick="sliderImg(
+                                     '${id}',
+                                     '${index - 1}')"
+                                     >Prev
+                                  </button>
+                                  ${index + 1}/${moto.images.length}
+                                  <button onclick="sliderImg(
+                                     '${id}',
+                                     '${index + 1}')"
+                                     >Next
+                                  </button>
                               </div>`;
-      showImgHTML.innerHTML = `<img src='${
-        moto.images[indexMotoImg - 1].url
-      }'>`;
-      //  });
+      showImgHTML.innerHTML = `<img src=
+                                  '${moto.images[index].url}'
+                                >`;
       cibleHTML.innerHTML = `<div>
                                    <button onclick="showmotos()">Retour</button><br>
                                    <button onclick="motoDelete('${id}')">X</button><br>
