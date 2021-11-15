@@ -1,0 +1,7 @@
+{{ name }}
+
+<p *ngIf="age>18"> Je suis majeur</p>
+
+<div *ngFor="let student of students">
+  <app-detail [student]="student"></app-detail>
+</div>

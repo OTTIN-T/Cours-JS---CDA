@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>TP - Tableur</title>
+  <meta charset="utf-8" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="./tableur.css" />
+</head>
+
+<body class="container">
+
+  <nav class="navbar navbar-light bg-light fixed-top" id="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">TP - Tableur : <span id="nameTableau"></span> <button data-bs-toggle="modal"
+          data-bs-target="#exampleModal">Reglage</button></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+        aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active btn my-1" aria-current="page" href="#" onclick="tableur.newTableau()">Créer un
+                nouveau
+                tableau</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active btn my-1" aria-current="page" href="#"
+                onclick="tableur.persisteTableau()">Sauvegarder le
+                tableau</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li> -->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle btn my-1" href="#" id="offcanvasNavbarDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                Liste des tableaux
+              </a>
+              <ul id="target4tableaux" class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+          <!-- <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form> -->
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <h1> TP - Tableur </h1>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Settings</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <label class="col-4" for="nbCol">Nombre de col:</label>
+            <input class="col-6" type="text" placeholder="Nombre de col" id="nbCol">
+          </div>
+          <div class="row">
+            <label class="col-4" for="nbRow">Nombre de row:</label>
+            <input class="col-6" type="text" placeholder="Nombre de row" id="nbRow">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn" onclick="tableur.saveSettings()">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="target"></div>
+
+  <table class="table" id="matable" nbcol="5" nbrow="8"></table>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="tableur.js"> </script>
+</body>
+
+</html>
