@@ -4,6 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
@@ -33,6 +34,7 @@ import { ReturnComponent } from './components/return/return.component';
     MatMenuModule,
     MatCardModule,
     MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
