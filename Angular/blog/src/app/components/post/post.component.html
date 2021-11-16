@@ -1,7 +1,8 @@
-<mat-card [ngClass]="{'ok': post.count >= 10, 'ko': post.count > 5 && post.count < 10}" *ngIf="post" class="card">
-  <mat-card-header>
-    <mat-card-title>Titre: {{ post.title }}</mat-card-title>
-    <mat-card-subtitle>{{ post.subtitle }}</mat-card-subtitle>
+<mat-card [ngClass]="{'small-like': post.count < 5,'medium-like': post.count >= 5, 'big-like': post.count >= 10 }"
+  *ngIf="post" class="card">
+  <mat-card-header class="header-card">
+    <mat-card-title class="title-card">Titre: {{ post.title }}</mat-card-title>
+    <mat-card-subtitle class="subtitle-card">{{ post.subtitle }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
     <p>
@@ -13,6 +14,7 @@
     <button mat-button (click)="addLike()">Like</button>
     <button mat-button (click)="removeLike()" *ngIf="post.count > 0">Dislike</button>
     <button mat-raised-button (click)="removePost()" color="warn">X</button>
+    <button mat-raised-button [routerLink]="['/resume', id]" routerLinkActive="router-link-active">Details</button>
   </mat-card-actions>
   <mat-card-footer class="card-footer">Posté le: {{ post.createDate }}</mat-card-footer><br>
 </mat-card>

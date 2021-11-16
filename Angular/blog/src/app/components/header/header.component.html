@@ -1,0 +1,5 @@
+<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [routerLink]="['/posts']" routerLinkActive="router-link-active">Posts</button>
+  <button mat-menu-item [routerLink]="['/notes']" routerLinkActive="router-link-active">Notes</button>
+</mat-menu>

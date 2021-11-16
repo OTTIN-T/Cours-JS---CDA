@@ -1,0 +1,5 @@
+<button mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [routerLink]="['']" routerLinkActive="router-link-active">Home</button>
+  <button mat-menu-item [routerLink]="['/basket']" routerLinkActive="router-link-active">Panier</button>
+</mat-menu>

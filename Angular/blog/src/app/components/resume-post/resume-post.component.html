@@ -1,0 +1,15 @@
+<button mat-menu-item [routerLink]="['/posts']" routerLinkActive="router-link-active">Back</button>
+
+<mat-card [ngClass]="{'ok': post.count >= 10, 'ko': post.count > 5 && post.count < 10}" *ngIf="post" class="card">
+  <mat-card-header>
+    <mat-card-title>Titre: {{ post.title }}</mat-card-title>
+    <mat-card-subtitle>{{ post.subtitle }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      {{ post.message }}
+    </p>
+    <span>Nombre de like: {{ post.count }}</span>
+  </mat-card-content>
+  <mat-card-footer class="card-footer">Posté le: {{ post.createDate }}</mat-card-footer>
+</mat-card>

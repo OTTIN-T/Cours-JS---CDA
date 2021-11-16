@@ -1,13 +1,29 @@
-.ok {
-  background-color: green;
+.small-like {
+  background-color: #182039;
 }
 
-.ko {
-  background-color: greenyellow;
+.medium-like {
+  background-color: #212b4e;
+}
+
+.big-like {
+  background-color: #3e64ff;
 }
 
 .card {
-  margin: 20px;
+  margin: 20px auto;
+  width: 50%;
+  color: #ffffff;
+}
+
+.header-card {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.subtitle-card {
+  color: #ffffff;
 }
 
 .card-footer {

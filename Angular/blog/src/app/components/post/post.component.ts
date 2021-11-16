@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PostService } from 'src/app/shared/services/post.service';
 
 @Component({
   selector: 'app-post',
@@ -7,6 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PostComponent implements OnInit {
   @Input() post: any;
+  @Input() id: number | undefined;
+
   constructor() {}
 
   ngOnInit(): void {}
