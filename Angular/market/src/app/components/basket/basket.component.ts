@@ -21,6 +21,7 @@ export class BasketComponent implements OnInit {
   ngOnInit(): void {
     this.getBasket();
     this.getTotalPrice(this.basket.products);
+    console.log('BasketComponent ~ this.basket', this.basket);
   }
 
   getBasket(): Basket {

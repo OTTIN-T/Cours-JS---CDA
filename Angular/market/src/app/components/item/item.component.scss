@@ -1,0 +1,43 @@
+.item-card {
+  background-color: #1e2745;
+  width: 45%;
+  margin: 20px auto;
+  padding: 30px 0;
+
+  .item-card-header {
+    display: flex;
+    justify-content: center;
+
+    .item-card-subtitle {
+      display: flex;
+      justify-content: center;
+      color: #afb2bd;
+    }
+  }
+
+  .item-card-img {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+  }
+
+  .item-card-content {
+    display: flex;
+    justify-content: space-around;
+    color: #f6d365;
+  }
+
+  .item-card-action {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin: auto;
+
+    button {
+      &:hover {
+        color: #f6d365;
+        background-color: #3e64ff;
+      }
+    }
+  }
+}

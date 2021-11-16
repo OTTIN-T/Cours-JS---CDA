@@ -1,0 +1,20 @@
+.header {
+  color: white;
+
+  &:hover {
+    color: #f6d365;
+  }
+}
+
+.mat-menu-content:not(:empty) {
+  background-color: #1e2745 !important;
+}
+
+button {
+  background-color: #1e2745;
+
+  &:hover {
+    color: #f6d365;
+    background-color: #3e64ff !important;
+  }
+}

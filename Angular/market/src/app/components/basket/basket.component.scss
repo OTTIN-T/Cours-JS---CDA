@@ -1,0 +1,67 @@
+.basket-card-block {
+  background-color: #182039;
+  width: 45%;
+  margin: 20px auto;
+
+  .basket-card {
+    background-color: #1e2745;
+    width: 45%;
+    margin: 20px auto;
+    padding: 30px;
+
+    .basket-card-header {
+      display: flex;
+      justify-content: center;
+
+      .basket-card-subtitle {
+        display: flex;
+        justify-content: center;
+        color: #afb2bd;
+      }
+    }
+
+    .basket-card-img {
+      display: flex;
+      justify-content: center;
+      margin: auto;
+    }
+
+    .basket-card-content {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .basket-card-action {
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+      margin: auto;
+
+      button {
+        &:hover {
+          color: #f6d365;
+          background-color: #3e64ff;
+        }
+      }
+    }
+  }
+
+  .basket-card-footer {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+  }
+}
+
+.basket-card-empty {
+  display: flex;
+  justify-content: space-around;
+  background-color: #1e2745;
+  width: 45%;
+  margin: 20vh auto;
+
+  &:hover {
+    color: #f6d365;
+    background-color: #3e64ff;
+  }
+}

@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppComponent } from './app.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { HeaderComponent } from './components/header/header.component';
-import { MatMenuModule } from '@angular/material/menu';
 import { BasketComponent } from './components/basket/basket.component';
 import { ListComponent } from './components/list/list.component';
 import { ItemComponent } from './components/item/item.component';
-import { MatCardModule } from '@angular/material/card';
 import { ItemDetailComponent } from './components/item-detail/item-detail.component';
 import { BasketIconComponent } from './components/basket-icon/basket-icon.component';
+import { ReturnComponent } from './components/return/return.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +24,7 @@ import { BasketIconComponent } from './components/basket-icon/basket-icon.compon
     ItemComponent,
     ItemDetailComponent,
     BasketIconComponent,
+    ReturnComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { BasketIconComponent } from './components/basket-icon/basket-icon.compon
     BrowserAnimationsModule,
     MatMenuModule,
     MatCardModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
