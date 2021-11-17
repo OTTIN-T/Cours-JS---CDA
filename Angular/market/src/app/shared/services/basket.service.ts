@@ -38,6 +38,9 @@ export class BasketService {
   }
 
   getTotalPrice(products: Item[]): number {
-    return products.map((item) => item.totalPrice).reduce((a, b) => a + b, 0);
+    const totalPrice = products
+      .map((item) => item.totalPrice)
+      .reduce((a, b) => a + b, 0);
+    return Math.floor(totalPrice * 100) / 100;
   }
 }

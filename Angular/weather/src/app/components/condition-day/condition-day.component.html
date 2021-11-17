@@ -1,0 +1,10 @@
+<div class="weather-gif-block">
+  <img class="weather-gif-img" *ngIf="condition.text === 'Sunny'" src="../../../assets/gif/sun.webp" alt="" srcset="">
+  <img class="weather-gif-img" *ngIf="condition.text === 'Light rain'" src="../../../assets/gif/rain.gif" alt=""
+    srcset="">
+  <img class="weather-gif-img" *ngIf="condition.text === 'Partly cloudy'" src="../../../assets/gif/cloud.gif" alt=""
+    srcset="">
+  <img class="weather-gif-img" *ngIf="condition.text === 'Overcast'" src="../../../assets/gif/overcast.gif" alt=""
+    srcset="">
+  <span class="weather-gif-text">{{condition.text}}</span>
+</div>

@@ -1,8 +1,12 @@
 .return-icon {
   color: white;
-  margin-top: 10px;
+  margin-top: 4px;
+  background-color: #1e2745;
+  border-radius: 3px;
+  padding: 5px 8px 5px 5px;
 
   &:hover {
     color: #f6d365;
+    background-color: #3e64ff;
   }
 }

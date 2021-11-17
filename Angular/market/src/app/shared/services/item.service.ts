@@ -90,11 +90,8 @@ export class ItemService {
     return this.items[id - 1];
   }
 
-  addToCart(item: Item): void {
-    item;
-  }
-
   getTotalPrice(item: Item): number {
-    return (item.totalPrice = item.price * item.quantity);
+    item.totalPrice = item.price * item.quantity;
+    return Math.floor(item.totalPrice * 100) / 100;
   }
 }

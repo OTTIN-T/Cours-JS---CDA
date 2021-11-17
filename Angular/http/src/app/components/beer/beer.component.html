@@ -1,0 +1,20 @@
+<button mat-raised-button [routerLink]="['/home']" routerLinkActive="router-link-active" *ngIf="id">Retour</button>
+
+<div *ngFor="let beer of beers">
+  <mat-card class="beer-card">
+    <mat-card-header>
+      <mat-card-title>{{beer.name}}</mat-card-title>
+      <mat-card-subtitle>{{beer.tagline}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{ beer.description}}
+      </p>
+      <span>Degrés: {{beer.abv}}</span>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button [routerLink]="['/beer', beer.id]" routerLinkActive="router-link-active"
+        *ngIf="!id">Details</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,35 @@
+.weather-card {
+  width: 460px;
+  margin: 15vh auto;
+  height: 258px;
+  background-color: #2d4b5d;
+  border: solid #748ea1 5px;
+  border-radius: 10px;
+
+  .weather-card-title {
+    display: flex;
+    justify-content: center;
+  }
+
+  .weather-card-first-content {
+    display: flex;
+    justify-content: space-between;
+
+    .weather-card-gif {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .weather-card-current {
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .weather-card-forecast {
+    display: flex;
+    justify-content: space-around;
+    margin: 25px auto 0;
+    width: 435px;
+  }
+}

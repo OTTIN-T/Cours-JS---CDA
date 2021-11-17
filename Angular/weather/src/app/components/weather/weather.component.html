@@ -1,0 +1,14 @@
+<mat-card class="weather-card">
+  <mat-card-header class="weather-card-title">
+    <app-day [location]="location"></app-day>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="weather-card-first-content">
+      <app-condition-day class="weather-card-gif" [condition]="condition"></app-condition-day>
+      <app-current class="weather-card-current" [current]="current"></app-current>
+    </div>
+    <div class="weather-card-second-content">
+      <app-forecast class="weather-card-forecast" [forecastday]="forecastday"></app-forecast>
+    </div>
+  </mat-card-content>
+</mat-card>

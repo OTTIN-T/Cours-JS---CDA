@@ -1,5 +1,9 @@
-h1 {
+.title-shop {
   display: flex;
   justify-content: center;
   color: #fff;
+
+  &:hover {
+    color: #f6d365;
+  }
 }

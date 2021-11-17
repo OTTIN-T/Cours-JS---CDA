@@ -1,0 +1,21 @@
+.weather-current-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #929899;
+  width: 275px;
+
+  .weather-current-temp {
+    font-size: 2rem;
+  }
+
+  .weather-current-info {
+    margin-right: 10%;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}

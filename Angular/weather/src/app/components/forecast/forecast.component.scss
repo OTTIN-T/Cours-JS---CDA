@@ -1,0 +1,24 @@
+.forecast-block {
+  display: flex;
+  color: #929899;
+
+  ul {
+    list-style: none;
+  }
+
+  .forecast-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+
+    .forecast-li-gif {
+      height: 55px;
+
+      .forecast-gif {
+        width: 50px;
+      }
+    }
+  }
+}

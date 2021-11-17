@@ -1,0 +1,16 @@
+<div class="forecast-block" *ngFor="let day of forecastday">
+  <ul class="forecast-list">
+    <li>{{ day.date }}</li>
+    <li class="forecast-li-gif">
+      <img class="forecast-gif" *ngIf="day.day.condition.text === 'Sunny'" src="../../../assets/gif/sun.webp" alt=""
+        srcset="">
+      <img class="forecast-gif" *ngIf="day.day.condition.text === 'Light rain'" src="../../../assets/gif/rain.gif"
+        alt="" srcset="">
+      <img class="forecast-gif" *ngIf="day.day.condition.text === 'Partly cloudy'" src="../../../assets/gif/cloud.gif"
+        alt="" srcset="">
+      <img class="forecast-gif" *ngIf="day.day.condition.text === 'Overcast'" src="../../../assets/gif/overcast.gif"
+        alt="" srcset="">
+    </li>
+    <li>{{day.day.avgtemp_c}}°C</li>
+  </ul>
+</div>

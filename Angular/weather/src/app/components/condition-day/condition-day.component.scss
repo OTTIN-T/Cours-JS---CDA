@@ -1,0 +1,18 @@
+.weather-gif-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 45%;
+
+  .weather-gif-img {
+    width: 80px;
+    margin-bottom: 25px;
+  }
+
+  .weather-gif-text {
+    display: flex;
+    justify-content: center;
+    color: #929899;
+    width: 90px;
+  }
+}

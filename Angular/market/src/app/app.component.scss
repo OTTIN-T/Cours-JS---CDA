@@ -1,11 +1,13 @@
 .header-cmp {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .basket-icon-cmp {
   display: flex;
   justify-content: center;
   position: relative;
-  top: -40px;
+  top: -35px;
+  left: 49%;
+  width: 41px;
 }

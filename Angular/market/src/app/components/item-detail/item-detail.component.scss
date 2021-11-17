@@ -2,13 +2,14 @@
   display: flex;
   justify-content: flex-start;
   position: relative;
-  top: -80px;
+  top: -75px;
+  width: 38px;
 }
 
 .item-card {
   background-color: #1e2745;
   width: 45%;
-  margin: 20vh auto;
+  margin: 6% auto;
   padding: 30px 0;
 
   .item-card-header {
