@@ -1,0 +1,73 @@
+<button mat-button [routerLink]="['/home']" routerLinkActive="router-link-active">
+  Retour
+</button>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill">
+    <mat-label for="lastname">Nom: </mat-label>
+    <input matInput type="text" id="lastname" formControlName="lastName">
+    <mat-error>Champ requis</mat-error>
+  </mat-form-field><br>
+
+  <mat-form-field appearance="fill">
+    <mat-label for="firstname">Prénom: </mat-label>
+    <input matInput type="text" id="firstname" formControlName="firstName" required><br>
+    <mat-error>Champ requis</mat-error>
+  </mat-form-field><br>
+
+  <mat-form-field appearance="fill">
+    <mat-label for="phone">Numéro de téléphone: </mat-label>
+    <input matInput type="text" id="phone" formControlName="phone" required><br>
+    <mat-error>Champ requis</mat-error>
+  </mat-form-field><br>
+
+  <mat-form-field appearance="fill">
+    <mat-label for="address">Adresse: </mat-label>
+    <input matInput type="text" id="address" formControlName="address" required><br>
+    <mat-error>Champ requis</mat-error>
+  </mat-form-field><br>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label for="city">Ville: </mat-label>
+    <input matInput type="text" id="city" formControlName="city" required><br>
+    <mat-error>Champ requis</mat-error>
+  </mat-form-field><br>
+
+  <mat-form-field appearance="fill">
+    <mat-label for="picture">Photo: </mat-label>
+    <input matInput type="text" id="picture" formControlName="picture" required><br>
+    <mat-error>Champ requis</mat-error>
+  </mat-form-field><br>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Votre pays:</mat-label>
+    <mat-select matNativeControl required formControlName="state">
+      <mat-option *ngFor="let state of states" [value]="state.value">
+        {{state.value }}
+      </mat-option>
+    </mat-select>
+    <mat-error>Merci de choisir une valeur</mat-error>
+  </mat-form-field><br>
+
+  <section>
+    <label for="gender">Genre: </label>
+    <mat-radio-group formControlName="gender">
+      <!-- <mat-radio-button *ngFor="let gender of genders" [value]="gender">
+        {{ gender.value }}
+      </mat-radio-button> -->
+      <mat-radio-button [value]="'masculin'">
+        masculin
+      </mat-radio-button>
+      <mat-radio-button [value]="'feminin'">
+        feminin
+      </mat-radio-button>
+    </mat-radio-group>
+  </section><br>
+
+  <section>
+    <mat-checkbox formControlName="agreement" required>Accord</mat-checkbox>
+  </section><br>
+
+  <button mat-raised-button type="submit" [disabled]="!userForm.valid"
+    routerLinkActive="router-link-active">Envoyer</button>
+</form>

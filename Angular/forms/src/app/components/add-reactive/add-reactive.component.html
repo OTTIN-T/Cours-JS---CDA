@@ -1,0 +1,46 @@
+<form [formGroup]="userForm" action="" (ngSubmit)="submit()">
+  <mat-form-field>
+    <mat-label for="firstname">Firstname:</mat-label>
+    <input matInput type="text" id="firstname" formControlName="firstName" required><br>
+    <mat-error>Champ requis</mat-error>
+  </mat-form-field><br>
+
+  <mat-form-field>
+    <mat-label for="lastname">Lastname: </mat-label>
+    <input matInput type="text" id="lastname" formControlName="lastName">
+  </mat-form-field><br>
+
+  <mat-form-field>
+    <mat-label for="email">Email: </mat-label>
+    <input matInput type="text" id="email" formControlName="email" required>
+    <mat-error>Mauvais format</mat-error>
+  </mat-form-field><br>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Votre pays:</mat-label>
+    <mat-select matNativeControl required formControlName="country">
+      <mat-option *ngFor="let country of countrys" [value]="country.value">
+        {{country.viewValue}}
+      </mat-option>
+    </mat-select>
+    <mat-error>Merci de choisir une valeur</mat-error>
+  </mat-form-field><br>
+
+  <section>
+    <label for="gender">Genre: </label>
+    <mat-radio-group formControlName="gender">
+      <mat-radio-button *ngFor="let genre of genders" [value]="genre">
+        {{ genre.viewValue }}
+      </mat-radio-button>
+    </mat-radio-group>
+  </section><br>
+
+  <section>
+    <mat-checkbox formControlName="agreement" required>Accord</mat-checkbox>
+  </section><br>
+
+  <button mat-raised-button type="submit" [disabled]="!userForm.valid">Submit</button>
+</form>
+
+
+Status: {{ userForm.status}}

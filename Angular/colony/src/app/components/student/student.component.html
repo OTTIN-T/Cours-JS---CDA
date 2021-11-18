@@ -1,0 +1,25 @@
+<button mat-button [routerLink]="['/home']" routerLinkActive="router-link-active" *ngIf="id">
+  Retour
+</button>
+
+<mat-card class="student-card">
+  <mat-card-header>
+    <mat-card-title>Nom: {{ student?.lastName}}</mat-card-title>
+    <mat-card-subtitle>Prénom: {{student?.firstName}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-sm-image src="{{ student?.picture }}" alt="student picture">
+  <mat-card-content *ngIf="id">
+    <span>Genre: {{student?.gender?.values}}</span>
+    <span>Numéro: {{student?.phone}}</span>
+    <span>Adresse: {{student?.address}}</span>
+    <span>Ville: {{student?.city}}</span>
+    <span>Pays: {{student?.state}}</span>
+  </mat-card-content>
+  <mat-card-actions *ngIf="!id">
+    <button mat-button [routerLink]="['/student', student?.id]" routerLinkActive="router-link-active">Infos</button>
+  </mat-card-actions>
+  <mat-card-actions *ngIf="id">
+    <button mat-raised-button (click)="removeStudent(id)">X</button>
+    <button mat-raised-button [routerLink]="['/form', id]" routerLinkActive="router-link-active">Modifier</button>
+  </mat-card-actions>
+</mat-card>
