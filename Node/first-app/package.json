@@ -1,0 +1,16 @@
+{
+  "name": "first-app",
+  "version": "1.0.0",
+  "description": "Premier projet",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "TimCode",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
