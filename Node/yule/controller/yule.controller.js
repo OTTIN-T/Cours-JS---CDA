@@ -1,7 +1,18 @@
 const Yule = require("../models").Yule;
+const Category = require("../models").Category;
+const { Op } = require("sequelize");
 
 exports.list_yule = (req, res, next) => {
-  Yule.findAll({})
+  Yule.findAll({
+    attributes: ["id", "name", "price", "description"],
+    include: [
+      {
+        model: Category,
+        attributes: ["id", "name"],
+      },
+    ],
+    order: [["price", "ASC"]],
+  })
     .then((yules) => {
       res.status(200).json(yules);
     })
@@ -20,10 +31,53 @@ exports.get_yule = (req, res, next) => {
     });
 };
 
+exports.search_yule = (req, res, next) => {
+  Yule.findAll({
+    attributes: ["id", "name", "price", "description"],
+    include: [
+      {
+        model: Category,
+        attributes: ["id", "name"],
+      },
+    ],
+    where: {
+      name: {
+        [Op.substring]: req.params.search,
+      },
+    },
+  })
+    .then((yules) => {
+      res.status(200).json(yules);
+    })
+    .catch((err) => {
+      console.log("err", err);
+    });
+};
+
 exports.add_yule = (req, res, next) => {
-  Yule.create(req.body)
-    .then((yule) => {
-      res.status(201).json(yule);
+  Category.findByPk(req.body.CategoryId)
+    .then((category) => {
+      if (category) {
+        Yule.create(req.body)
+          .then((yule) => {
+            console.log("yule", yule);
+            console.log("req.body.ingredients", req.body.ingredients);
+
+            yule
+              .setIngredients(req.body.ingredients)
+              .then(() => {
+                res.status(201).json(yule);
+              })
+              .catch((err) => {
+                console.log("err set ingre", err);
+              });
+          })
+          .catch((err) => {
+            console.log("err", err);
+          });
+      } else {
+        res.status(404).json({ message: "Category not found" });
+      }
     })
     .catch((err) => {
       console.log("err", err);
